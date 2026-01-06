@@ -6,18 +6,20 @@ This project demonstrates real-world frontend skills such as API integration, gl
 ---
 
 ## 🚀 Live Demo
-👉 https://ecommerce.vercel.app
+👉 https://
 
 ---
 
 ## 🧠 Features
-- Product listing with real API data
-- Product details page
+- Product listing with live API data
+- Product details page with skeleton loader
+- Search, category filtering, and sorting
 - Shopping cart with quantity controls
-- Add / remove items from cart
-- Global state management using Context API
+- Persistent cart using localStorage
+- Global state management with Context API
+- Skeleton loaders for improved perceived performance
 - Loading and error handling
-- Fully responsive (mobile-first design)
+- Fully responsive, mobile-first UI
 
 ---
 
@@ -63,16 +65,16 @@ npm run dev
 ---
 
 ## 🎯 What I Learned
-- Managing global state with React Context
-- Handling async data with loading and error states
-- Building reusable components
-- Implementing real-world cart logic
-- Improving UX with mobile-first design
+- Managing complex global state with React Context
+- Implementing client-side search, filter, and sort logic
+- Persisting application state using localStorage
+- Improving UX with skeleton loaders and responsive layouts
+- Building scalable and reusable React components
 
 ---
 
 ## 📬 Contact
-- Portfolio: https://myportfolio.com
+- Portfolio: https://
 - GitHub: https://github.com/yanorenzo624
 - Gmail: yanorenzo624@gmail.com
 
