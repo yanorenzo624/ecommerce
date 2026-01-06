@@ -8,11 +8,26 @@ const Home = () => {
 	const [error, setError] = useState("");
 	const [search, setSearch] = useState("");
 	const [category, setCategory] = useState("all");
+	const [sort, setSort] = useState("default");
 
 	const categories = [
 		"all",
 		...new Set(products.map((product) => product.category)),
 	];
+
+	const filteredProducts = products
+		.filter((product) =>
+			category === "all" ? true : product.category === category
+		)
+		.filter((product) =>
+			product.title.toLowerCase().includes(search.toLowerCase())
+		)
+		.sort((a, b) => {
+			if (sort === "price-low") return a.price - b.price;
+			if (sort === "price-high") return b.price - a.price;
+			if (sort === "name") return a.title.localeCompare(b.title);
+			return 0;
+		});
 
 	useEffect(() => {
 		fetch("https://fakestoreapi.com/products")
@@ -36,7 +51,7 @@ const Home = () => {
 	return (
 		<div className="max-w-6xl mx-auto px-4 py-10">
 			<h1 className="text-2xl font-bold mb-6">Products</h1>
-			
+
 			<div className="flex flex-col sm:flex-row gap-4 mb-6">
 				<input
 					type="text"
@@ -56,19 +71,22 @@ const Home = () => {
 						</option>
 					))}
 				</select>
+				<select
+					value={sort}
+					onChange={(e) => setSort(e.target.value)}
+					className="mb-6 p-3 border rounded-lg w-full sm:w-60"
+				>
+					<option value="default">Sort</option>
+					<option value="price-low">Price: Low → High</option>
+					<option value="price-high">Price: High → Low</option>
+					<option value="name">Name: A → Z</option>
+				</select>
 			</div>
 
 			<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-				{products
-					.filter((product) =>
-						category === "all" ? true : product.category === category
-					)
-					.filter((product) =>
-						product.title.toLowerCase().includes(search.toLowerCase())
-					)
-					.map((product) => (
-						<ProductCard key={product.id} product={product} />
-					))}
+				{filteredProducts.map((product) => (
+					<ProductCard key={product.id} product={product} />
+				))}
 			</div>
 		</div>
 	);
