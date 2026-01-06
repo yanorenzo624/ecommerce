@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
-import Loader from "../components/Loader";
+import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -21,7 +21,7 @@ const ProductDetails = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <Loader />;
+  if (loading) return <ProductDetailsSkeleton />;
   if (error)
     return (
       <p className="text-center mt-10 text-red-600">
