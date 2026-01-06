@@ -1,21 +1,33 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
+import Loader from "../components/Loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const { addToCart } = useCart();
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then((data) => setProduct(data))
+      .catch(() => setError("Failed to load product"))
+      .finally(() => setLoading(false));
   }, [id]);
 
-  if (!product) {
-    return <p className="text-center mt-10">Loading...</p>;
-  }
+  if (loading) return <Loader />;
+  if (error)
+    return (
+      <p className="text-center mt-10 text-red-600">
+        {error}
+      </p>
+    );
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8">
