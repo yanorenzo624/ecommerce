@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import Loader from "../components/Loader";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
@@ -40,7 +40,15 @@ const Home = () => {
 			.finally(() => setLoading(false));
 	}, []);
 
-	if (loading) return <Loader />;
+	if (loading) {
+		return (
+			<div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+				{Array.from({ length: 8 }).map((_, i) => (
+					<ProductSkeleton key={i} />
+				))}
+			</div>
+		);
+	}
 	if (error)
 		return (
 			<p className="text-center mt-10 text-red-600">
