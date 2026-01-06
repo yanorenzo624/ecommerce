@@ -34,7 +34,7 @@ const ProductDetails = () => {
       <img
         src={product.image}
         alt={product.title}
-        className="w-full h-80 object-contain"
+        className="w-full h-64 md:h-80 object-contain"
       />
 
       <div>
@@ -44,7 +44,7 @@ const ProductDetails = () => {
 
         <button
           onClick={() => addToCart(product)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+          className="w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         >
           Add to Cart
         </button>
