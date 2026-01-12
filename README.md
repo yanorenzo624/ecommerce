@@ -6,7 +6,8 @@ This project demonstrates real-world frontend skills such as API integration, gl
 ---
 
 ## 🚀 Live Demo
-👉 https://ecommerce-two-psi-57.vercel.app/
+- 👉 Live: https://ecommerce-two-psi-57.vercel.app/
+- 👉 Portfolio: https://renzoyano.vercel.app/
 
 ---
 
